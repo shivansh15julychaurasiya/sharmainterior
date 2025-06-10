@@ -24,7 +24,7 @@
 /* Home page css */
 .home-section {
   background: 
-    url('../../public/image1.jpeg') no-repeat center center/cover;
+    url('../../public/images/image1.jpeg') no-repeat center center/cover;
   height: 100vh;
   position: relative;
   display: flex;
