@@ -5,17 +5,17 @@ const estimatorOptions = [
   {
     title: 'Full Home',
     description: 'Get an approximate costing for your full home interiors.',
-    icon: '../../public/icon6.png', // Replace with real icon
+    icon: "/public/images/icon6.png", // Replace with real icon
   },
   {
     title: 'Kitchen',
     description: 'Get an approximate costing for your kitchen interior.',
-    icon: '../../public/icon6.png', // Replace with real icon
+    icon: '/public/icon6.png', // Replace with real icon
   },
   {
     title: 'Wardrobe',
     description: 'Get an approximate costing for your wardrobe.',
-    icon: '../../public/icon6.png', // Replace with real icon
+    icon: '/public/icon6.png', // Replace with real icon
   },
 ];
 

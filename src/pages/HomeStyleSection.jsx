@@ -3,17 +3,17 @@ import { Container, Row, Col, Card, CardImg, CardBody, CardTitle, CardText, Butt
 
 const homesData = [
   {
-    img: '../../public/images/image.png', // replace with your actual image
+    img: '/public/images/image.png', // replace with your actual image
     title: 'Contemporary & Classy 3 BHK',
     subtitle: 'Add the cloudy hues to your space.',
   },
   {
-    img: '../../public/images/image3.png',
+    img: '/public/images/image3.png',
     title: 'Royal & Elegant 3 BHK',
     subtitle: 'Add textural and magnificent touch.',
   },
   {
-    img: '../../public/images/image3.png',
+    img: '/public/images/image3.png',
     title: 'Contemporary & Classy 4 BHK',
     subtitle: 'Classic and crisp geometric designs.',
   },

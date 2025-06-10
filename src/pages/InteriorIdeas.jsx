@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import { FaDownload } from "react-icons/fa";
 
+
 const InteriorIdeas = () => {
   return (
     <Container  className="my-5">
@@ -15,7 +16,7 @@ const InteriorIdeas = () => {
         <Row className="align-items-center">
           <Col md="6">
             <img
-              src="../../public/images/image9.png"
+              src="/public/images/image9.png"
               alt="Interior Guide"
               style={{
                 width: "100%",
