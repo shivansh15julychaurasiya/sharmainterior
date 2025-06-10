@@ -6,7 +6,7 @@ const Footer = () => {
     <footer style={{ backgroundColor: "#3C2A4D", color: "#fff", padding: "20px 0" }}>
       <Container>
         <p className="text-center mb-2" style={{ fontSize: "14px" }}>
-          © 2024 Livspace.com All Rights Reserved.
+          © 2025 Sharma-Interior All Rights Reserved.
         </p>
         <p className="text-center" style={{ fontSize: "13px", lineHeight: "1.6" }}>
           ¹For full scope, please visit, https://sharmainterior.co.in/ | ²For kitchen,

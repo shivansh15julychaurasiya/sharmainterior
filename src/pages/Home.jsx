@@ -11,7 +11,26 @@ import InteriorGuide from "./InteriorGuide";
 import TestedComponent from "./TestestComponent";
 import InteriorIdeas from "./InteriorIdeas";
 import HowItWorks from "./HowItWorks";
+import ConnectWithUs from "./ConnectWithUs";
+import InTheNews from "./InTheNews";
 export default function Home() {
+
+  const highlights = [
+    {
+      icon: '/public/images/icon10.png',
+      text: 'Personalised designs',
+    },
+    {
+      icon: '/public/images/icon11.png',
+      text: 'Flat 10-year warranty¹',
+    },
+    {
+      icon: '/public/images/icon12.png',
+      text: 'Transparent pricing',
+    },
+  ];
+  
+
   return (
     <>
       <div className="home-section">
@@ -23,8 +42,8 @@ export default function Home() {
                   Transform Your Home into a Dream Space
                 </h1>
                 <p className="lead">
-                  Experience award-winning interiors with Sharma-Interior like speed
-                  and quality
+                  Experience award-winning interiors with Sharma-Interior like
+                  speed and quality
                 </p>
                 <Button color="light" size="lg" tag={Link} to="/estimate">
                   Get Free Estimate
@@ -34,26 +53,34 @@ export default function Home() {
           </Container>
         </div>
       </div>
+      {/* highlight*/}
+      <div className="highlights-container">
+      {highlights.map((item, index) => (
+        <div className="highlight-item" key={index}>
+          <img src={item.icon} alt={item.text} className="highlight-icon" />
+          <p className="highlight-text">{item.text}</p>
+        </div>
+      ))}
+    </div>
       {/* Designer  banner */}
       <div className="mt-1">
-        <HomeDesignSection/>
+        <HomeDesignSection />
 
-       <HomesStyleSection />
-             <InteriorPriceEstimator />
-               <WhatWeOffer />
-              <TrustedPartners/>
-               <InteriorGuide/>
-               <TestedComponent/>
-               <InteriorIdeas/>
-<HowItWorks/>
+        <HomesStyleSection />
+        <InteriorPriceEstimator />
+        <WhatWeOffer />
+        <TrustedPartners />
+        <InteriorGuide />
+        <TestedComponent />
+        <InteriorIdeas />
+        <ConnectWithUs />
+        <HowItWorks />
+        <InTheNews />
 
-      <DesignBanner />
-
-
+        <DesignBanner />
       </div>
       {/* HOME DESIGN SECTION */}
-      <div className="">
-      </div>
+      <div className=""></div>
     </>
   );
 }
