@@ -33,7 +33,7 @@ function DesignBanner() {
 
       {/* WhatsApp Floating Icon */}
       <a
-        href="https://wa.me/919999999999"
+        href="https://wa.me/9582544372"
         target="_blank"
         rel="noopener noreferrer"
         className="whatsapp-float"
