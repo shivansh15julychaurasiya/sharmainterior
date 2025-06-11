@@ -1,7 +1,11 @@
-import React from 'react';
+import {useState} from 'react';
 import { Container, Row, Col, Button } from 'reactstrap';
+import QuoteModal from './QuoteModel';
 
 function DesignBanner() {
+
+   const [showModal, setShowModal] = useState(false);
+  
   return (
     <div className="design-banner">
       <Container className="text-center">
@@ -13,9 +17,16 @@ function DesignBanner() {
             <p className="subtitle text-light">
               Book a free consultation with our expert interior designers.
             </p>
-            <Button color="danger" className="cta-btn">
-              START YOUR DESIGN JOURNEY
-            </Button>
+              <div className="App text-center p-2">
+      <button
+        className="btn btn-danger"
+        onClick={() => setShowModal(true)}
+      >
+        START YOUR DESIGN JOURNEY
+      </button>
+
+      <QuoteModal show={showModal} handleClose={() => setShowModal(false)} />
+    </div>
           </Col>
         </Row>
       </Container>

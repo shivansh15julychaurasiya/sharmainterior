@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, Card, CardBody, CardTitle, CardText, Button } from 'reactstrap';
+import { useNavigate } from 'react-router-dom';
 
 const estimatorOptions = [
   {
@@ -20,6 +21,14 @@ const estimatorOptions = [
 ];
 
 function InteriorPriceEstimator() {
+
+
+    const navigate = useNavigate();
+
+  const handleRedirect = () => {
+    navigate('/price-estimate');
+  };
+
   return (
     <div className="estimator-section py-5">
       <Container>
@@ -37,7 +46,7 @@ function InteriorPriceEstimator() {
                   <img src={item.icon} alt={item.title} className="estimator-icon mb-3" />
                   <CardTitle tag="h5" className="mb-2 fw-bold">{item.title}</CardTitle>
                   <CardText className="mb-4">{item.description}</CardText>
-                  <Button color="danger " className=" rounded-pill px-5 py-2">
+                  <Button color="danger " className=" rounded-pill px-5 py-2" onClick={handleRedirect}>
                     CALCULATE <span className="ms-2">&gt;</span>
                   </Button>
                 </CardBody>

@@ -9,7 +9,7 @@ const ConnectWithUs = () => {
         Reach out on WhatsApp or give us a call for the best home design experience.
       </p>
       <div className="connect-buttons">
-        <a href="tel:+9582544372"  className="connect-button call-button">
+        <a href="tel:+919582544372"  className="connect-button call-button">
        
           
           <span> 📞 Call Now</span>

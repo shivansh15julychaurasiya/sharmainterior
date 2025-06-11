@@ -1,27 +1,36 @@
-import {useState} from 'react';
-import { Container, Row, Col, Card, CardImg, CardBody, CardTitle, CardText, Button } from 'reactstrap';
-import QuoteModal from './QuoteModel';
+import { useState } from "react";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  CardImg,
+  CardBody,
+  CardTitle,
+  CardText,
+  Button,
+} from "reactstrap";
+import QuoteModal from "./QuoteModel";
 const homesData = [
   {
-    img: '/images/image.png', // replace with your actual image
-    title: 'Contemporary & Classy 3 BHK',
-    subtitle: 'Add the cloudy hues to your space.',
+    img: "/images/image.png", // replace with your actual image
+    title: "Contemporary & Classy 3 BHK",
+    subtitle: "Add the cloudy hues to your space.",
   },
   {
-    img: '/images/image3.png',
-    title: 'Royal & Elegant 3 BHK',
-    subtitle: 'Add textural and magnificent touch.',
+    img: "/images/image3.png",
+    title: "Royal & Elegant 3 BHK",
+    subtitle: "Add textural and magnificent touch.",
   },
   {
-    img: '/images/image3.png',
-    title: 'Contemporary & Classy 4 BHK',
-    subtitle: 'Classic and crisp geometric designs.',
+    img: "/images/image3.png",
+    title: "Contemporary & Classy 4 BHK",
+    subtitle: "Classic and crisp geometric designs.",
   },
 ];
 
 function HomesStyleSection() {
- const [showModal, setShowModal] = useState(false);
-
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <div className="homes-style-section">
@@ -29,19 +38,9 @@ function HomesStyleSection() {
         <div className="text-center mb-5">
           <h2 className="section-title">Homes for every style</h2>
           <p className="section-subtitle">
-            Superior finishes, trendy designs and quality modules at affordable prices.
+            Superior finishes, trendy designs and quality modules at affordable
+            prices.
           </p>
-      <div className="App text-center p-2">
-      <button
-        className="btn btn-danger"
-        onClick={() => setShowModal(true)}
-      >
-        Get Free Quote
-      </button>
-
-      <QuoteModal show={showModal} handleClose={() => setShowModal(false)} />
-      
-    </div>
         </div>
         <Row>
           {homesData.map((home, index) => (
@@ -49,9 +48,23 @@ function HomesStyleSection() {
               <Card className="home-card">
                 <CardImg top width="100%" src={home.img} alt={home.title} />
                 <CardBody>
-                  <CardTitle tag="h5" className="card-title">{home.title}</CardTitle>
+                  <CardTitle tag="h5" className="card-title">
+                    {home.title}
+                  </CardTitle>
                   <CardText className="card-subtitle">{home.subtitle}</CardText>
-                  <Button outline color="danger" className="quote-card-btn mt-2">GET FREE QUOTE</Button>
+                  <div className="App text-center p-2">
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => setShowModal(true)}
+                    >
+                      Get Free Quote
+                    </button>
+
+                    <QuoteModal
+                      show={showModal}
+                      handleClose={() => setShowModal(false)}
+                    />
+                  </div>
                 </CardBody>
               </Card>
             </Col>

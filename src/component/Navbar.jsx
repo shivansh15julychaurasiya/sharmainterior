@@ -21,9 +21,16 @@ function NavigationBar() {
   const location = useLocation();
 
   return (
-    <Navbar expand="md" light className="shadow-sm bg-white fixed-top py-2 px-4">
+    <Navbar expand="md" light className="shadow-sm bg-white fixed-top py-2 px-1">
       <NavbarBrand tag={Link} to="/" className="fw-bold fs-4 text-primary text-dark">
-       SHARMA-INTERIOR
+      <img
+      width="125px"
+  src="/images/sharmalogo2.png"
+  alt="Sharma Interior Logo"
+  className="logo-img "
+/>
+
+
       </NavbarBrand>
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>

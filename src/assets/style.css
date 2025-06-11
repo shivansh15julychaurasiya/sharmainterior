@@ -597,7 +597,7 @@
 }
 
 .hero-section {
-  background: url('/public//images//image\ 20.jpg') center/cover no-repeat;
+  background: url('/public/images/image20.jpg') center/cover no-repeat;
   min-height: 500px;
 }
 
@@ -616,5 +616,12 @@
 .service-icon i {
   color: #5A189A;
 }
+/* navbar logo css */
+.logo-img {
+  height: 70px; /* keep small actual height */
+  transform: scale(1.41); /* scale up the logo visually */
+  transform-origin: left center;
+}
+
 
 
