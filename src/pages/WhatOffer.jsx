@@ -9,7 +9,7 @@ import 'swiper/css/navigation';
 const offerCards = [
   {
     title: 'Our services',
-    icon: '/public/images/icon3.png',
+    icon: '/images/icon3.png',
     points: [
       'Modular kitchens',
       'Modular wardrobes',
@@ -23,7 +23,7 @@ const offerCards = [
   },
   {
     title: 'Warranty',
-    icon: '/public/images/icon2.png',
+    icon: '/images/icon2.png',
     points: [
       'FLAT 10-year warranty¹ - Stay worry-free with our warranty policy on modular products.',
       'Up to 1-year on-site service warranty¹ - for painting, electrical, plumbing, etc.',
@@ -31,7 +31,7 @@ const offerCards = [
   },
   {
     title: 'Technology & science',
-    icon: '/public/images/icon4.png',
+    icon: '/images/icon4.png',
     points: [
       'AquaBloc® Technology - No moisture enters the panels.',
       'AntiBubble® Technology - No air bubbles in finish.',
@@ -41,7 +41,7 @@ const offerCards = [
   },
   {
     title: 'Modular Furniture',
-    icon: '/public/images/icon3.png',
+    icon: '/images/icon3.png',
     points: [
       'Custom-designed beds, tables, and chairs.',
       'Perfect fit for your home interior.',
@@ -49,7 +49,7 @@ const offerCards = [
   },
   {
     title: 'On-site Services',
-    icon: '/public/images/icon3.png',
+    icon: '/images/icon3.png',
     points: [
       'Painting, plumbing, tiling, and carpentry.',
       'One-stop solution for complete home makeover.',

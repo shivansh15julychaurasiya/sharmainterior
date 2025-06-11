@@ -1,4 +1,4 @@
-import React from "react";
+import {useState} from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import DesignBanner from "./DesignBanner";
@@ -13,19 +13,24 @@ import InteriorIdeas from "./InteriorIdeas";
 import HowItWorks from "./HowItWorks";
 import ConnectWithUs from "./ConnectWithUs";
 import InTheNews from "./InTheNews";
+import QuoteModal from "./QuoteModel";
+
 export default function Home() {
+
+   const [showModal, setShowModal] = useState(false);
+  
 
   const highlights = [
     {
-      icon: '/public/images/icon10.png',
+      icon: '/images/icon10.png',
       text: 'Personalised designs',
     },
     {
-      icon: '/public/images/icon11.png',
+      icon: '/images/icon11.png',
       text: 'Flat 10-year warranty¹',
     },
     {
-      icon: '/public/images/icon12.png',
+      icon: '/images/icon12.png',
       text: 'Transparent pricing',
     },
   ];
@@ -45,9 +50,16 @@ export default function Home() {
                   Experience award-winning interiors with Sharma-Interior like
                   speed and quality
                 </p>
-                <Button color="light" size="lg" tag={Link} to="/estimate">
-                  Get Free Estimate
-                </Button>
+                 <div className="App text-center p-2">
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => setShowModal(true)}
+                      >
+                       Get Free Quote
+                      </button>
+                
+                      <QuoteModal show={showModal} handleClose={() => setShowModal(false)} />
+                    </div>
               </Col>
             </Row>
           </Container>

@@ -3,27 +3,27 @@ import { Container, Row, Col, Button } from "reactstrap";
 
 const steps = [
   {
-    icon: "/public/images/meet.png",
+    icon: "/images/meet.png",
     title: "Meet a designer",
     desc: "",
   },
   {
-    icon:  "/public/images/payment.png",
+    icon:  "/images/payment.png",
     title: "(5% payment⁴)",
     desc: "Book a renovation",
   },
   {
-    icon:  "/public/images/payment2.png",
+    icon:  "/images/payment2.png",
     title: "(60% payment)",
     desc: "Execution begins",
   },
   {
-    icon:  "/public/images/payment3.png",
+    icon:  "/images/payment3.png",
     title: "(100% payment)",
     desc: "Final installations",
   },
   {
-    icon:  "/public/images/move.png",
+    icon:  "/images/move.png",
     title: "Move in and enjoy!",
     desc: "",
   },

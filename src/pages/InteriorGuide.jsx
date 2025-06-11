@@ -15,7 +15,7 @@ const InteriorGuide = () => {
         <Row className="align-items-center">
           <Col md="6">
             <img
-              src="/public/images/image5.png"
+              src="/images/image5.png"
               alt="Interior Guide"
               style={{
                 width: "100%",

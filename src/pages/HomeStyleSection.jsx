@@ -1,25 +1,28 @@
-import React from 'react';
+import {useState} from 'react';
 import { Container, Row, Col, Card, CardImg, CardBody, CardTitle, CardText, Button } from 'reactstrap';
-
+import QuoteModal from './QuoteModel';
 const homesData = [
   {
-    img: '/public/images/image.png', // replace with your actual image
+    img: '/images/image.png', // replace with your actual image
     title: 'Contemporary & Classy 3 BHK',
     subtitle: 'Add the cloudy hues to your space.',
   },
   {
-    img: '/public/images/image3.png',
+    img: '/images/image3.png',
     title: 'Royal & Elegant 3 BHK',
     subtitle: 'Add textural and magnificent touch.',
   },
   {
-    img: '/public/images/image3.png',
+    img: '/images/image3.png',
     title: 'Contemporary & Classy 4 BHK',
     subtitle: 'Classic and crisp geometric designs.',
   },
 ];
 
 function HomesStyleSection() {
+ const [showModal, setShowModal] = useState(false);
+
+
   return (
     <div className="homes-style-section">
       <Container>
@@ -28,7 +31,17 @@ function HomesStyleSection() {
           <p className="section-subtitle">
             Superior finishes, trendy designs and quality modules at affordable prices.
           </p>
-          <Button className="quote-btn">GET FREE QUOTE</Button>
+      <div className="App text-center p-2">
+      <button
+        className="btn btn-danger"
+        onClick={() => setShowModal(true)}
+      >
+        Get Free Quote
+      </button>
+
+      <QuoteModal show={showModal} handleClose={() => setShowModal(false)} />
+      
+    </div>
         </div>
         <Row>
           {homesData.map((home, index) => (

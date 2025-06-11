@@ -5,22 +5,22 @@ import classnames from "classnames";
 const testData = [
   {
     title: "Drawer Cyclic Test",
-    videoUrl: "/public/video/v1.mp4",
+    videoUrl: "/video/v1.mp4",
     description: "Ensures drawers withstand frequent usage without failures.",
   },
   {
     title: "Shutter Cyclic Test",
-    videoUrl:"/public/video/v1.mp4",
+    videoUrl:"/video/v1.mp4",
     description: "Verifies the shutter's durability over repeated use.",
   },
   {
     title: "Vertical Force Test",
-    videoUrl: "/public/video/v1.mp4",
+    videoUrl: "/video/v1.mp4",
     description: "Ensures superior hinge quality and avoids accidents.",
   },
   {
     title: "Shelf Load Test",
-    videoUrl: "/public/video/v1.mp4",
+    videoUrl: "/video/v1.mp4",
     description: "Tests shelf strength under heavy loads to ensure safety.",
   },
 ];

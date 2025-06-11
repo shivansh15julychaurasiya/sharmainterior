@@ -10,8 +10,12 @@ import {
   Button
 } from 'reactstrap';
 import { Link, useLocation } from 'react-router-dom';
+import QuoteModal from '../pages/QuoteModel';
 
 function NavigationBar() {
+
+ const [showModal, setShowModal] = useState(false);
+
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const location = useLocation();
@@ -42,7 +46,7 @@ function NavigationBar() {
               Services
             </NavLink>
           </NavItem>
-          <NavItem>
+          {/* <NavItem>
             <NavLink
               tag={Link}
               to="/projects"
@@ -50,8 +54,8 @@ function NavigationBar() {
             >
               Projects
             </NavLink>
-          </NavItem>
-          <NavItem>
+          </NavItem> */}
+          {/* <NavItem>
             <NavLink
               tag={Link}
               to="/estimate"
@@ -59,20 +63,27 @@ function NavigationBar() {
             >
               Estimate
             </NavLink>
-          </NavItem>
+          </NavItem> */}
           <NavItem>
             <NavLink
               tag={Link}
-              to="/contact"
-              className={location.pathname === '/contact' ? 'active' : ''}
+              to="/about"
+              className={location.pathname === '/about' ? 'active' : ''}
             >
-              Contact
+              About us
             </NavLink>
           </NavItem>
           <NavItem>
-            <Button color="primary" size="sm" className="ms-3">
-              Book Consultation
-            </Button>
+             <div className="App text-center p-2">
+      <button
+        className="btn btn-danger"
+        onClick={() => setShowModal(true)}
+      >
+        Get Free Quote
+      </button>
+
+      <QuoteModal show={showModal} handleClose={() => setShowModal(false)} />
+    </div>
           </NavItem>
         </Nav>
       </Collapse>

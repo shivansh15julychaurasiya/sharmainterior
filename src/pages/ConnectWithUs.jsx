@@ -9,12 +9,13 @@ const ConnectWithUs = () => {
         Reach out on WhatsApp or give us a call for the best home design experience.
       </p>
       <div className="connect-buttons">
-        <a href="tel:+1234567890" className="connect-button call-button">
-          <FaPhoneAlt />
-          <span>CALL NOW</span>
+        <a href="tel:+9582544372"  className="connect-button call-button">
+       
+          
+          <span> 📞 Call Now</span>
         </a>
         <a
-          href="https://wa.me/1234567890"
+          href="https://wa.me/9582544372"
           target="_blank"
           rel="noopener noreferrer"
           className="connect-button whatsapp-button"

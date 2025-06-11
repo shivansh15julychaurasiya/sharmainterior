@@ -1,7 +1,10 @@
-import React from 'react';
+import {useState} from 'react';
 import { Container, Row, Col, Button } from 'reactstrap';
+import QuoteModal from './QuoteModel';
 
 function HomeDesignSection() {
+     const [showModal, setShowModal] = useState(false);
+  
   return (
     <div>
       {/* Top Section */}
@@ -13,9 +16,16 @@ function HomeDesignSection() {
             employ state-of-the-art technology to ensure your home features a flawless look that
             lasts a very long time.
           </p>
-          <Button color="danger" className="consult-btn " >
-            BOOK FREE CONSULTATION
-          </Button>
+          <div className="App text-center p-2">
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => setShowModal(true)}
+                      >
+                       GET FREE CONSULTATION
+                      </button>
+                
+                      <QuoteModal show={showModal} handleClose={() => setShowModal(false)} />
+                    </div>
         </Container>
       </div>
 

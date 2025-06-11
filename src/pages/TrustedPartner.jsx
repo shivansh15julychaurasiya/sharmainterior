@@ -6,12 +6,15 @@ import 'swiper/css';
 // import './TrustedPartners.css'; // Custom styles
 
 const partners = [
-  { name: 'Saint-Gobain', img: '/public/images/saint.png' },
-  { name: 'CenturyPly', img: '/public/images/century.png' },
-  { name: 'Bosch', img: '/public/images/bosch.png'},
-  { name: 'Siemens', img: '/public/images/siemens.png'},
-  { name: 'Hettich', img: '/public/images/hettich.png'},
-  { name: 'Greenlam', img: '/public/images/greenlam.png' },
+  { name: 'Saint-Gobain', img: '/images/saint.png' },
+  { name: 'Muthoot-finance', img: '/images/muthoot.png' },
+
+  { name: 'CenturyPly', img: '/images/century.png' },
+  { name: 'Bosch', img: '/images/bosch.png'},
+  { name: 'Siemens', img: '/images/siemens.png'},
+  { name: 'Hettich', img: '/images/hettich.png'},
+  { name: 'Greenlam', img: '/images/greenlam.png' },
+
   // Add more if needed
 ];
 
