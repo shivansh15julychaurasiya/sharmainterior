@@ -1,9 +1,11 @@
-import React from "react";
+import {useState} from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import { FaDownload } from "react-icons/fa";
-
+import DownloadGuideModal from "./DownloadGuideModel";
 
 const InteriorIdeas = () => {
+      const [modalOpen, setModalOpen] = useState(false);
+  
   return (
     <Container  className="my-5">
       <div
@@ -26,24 +28,16 @@ const InteriorIdeas = () => {
           </Col>
           <Col md="6">
             <h2 style={{ color: "#2B2B2B", fontWeight: "bold" }}>
-              Download home interior guide
+              Download  interior design ideas
             </h2>
             <p style={{ marginTop: "15px", fontSize: "16px", color: "#333" }}>
-              Don’t forget to consider these fundamental design guidelines to
-              know before you start interior designing!
+            Discover endless inspiration for every corner of your home! Download now and bring your dream home to life
             </p>
-            <Button
-              color="danger"
-              style={{
-                marginTop: "20px",
-                borderRadius: "30px",
-                padding: "10px 25px",
-                fontSize: "16px",
-              }}
-            >
-              <FaDownload style={{ marginRight: "8px" }} />
-              DOWNLOAD NOW
-            </Button>
+               <Button color="primary" onClick={() => setModalOpen(true)}>
+                <FaDownload style={{ marginRight: "8px" }} />
+        Download guide
+      </Button>
+      <DownloadGuideModal isOpen={modalOpen} toggle={() => setModalOpen(!modalOpen)} />
           </Col>
         </Row>
       </div>

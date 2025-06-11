@@ -22,27 +22,13 @@ const homesData = [
     title: "Royal & Elegant 3 BHK",
     subtitle: "Add textural and magnificent touch.",
   },
+  {
+    img: "/images/image5.png",
+    title: "Royal & Elegant 3 BHK",
+    subtitle: "Add textural and magnificent touch.",
+  },
  
-  {
-    img: "/images/bank.png",
-    title: "Elegant & Secure Bank Interiors",
-    subtitle: "Classic and crisp geometric designs.",
-  },
-  {
-    img: "/images/saloon.jpg",
-    title: "Elevate Your Salon Experience Through Interior Design",
-    subtitle: "Designed for creativity, comfort, and client satisfaction.",
-  },
-  {
-    img: "/images/office.png",
-    title: "Modern Office Interiors That Boost Productivity",
-    subtitle: "Tailor-made office spaces that reflect your brand and foster employee engagement",
-  },
-  {
-    img: "/images/commercial.png",
-    title: "Commercial Interiors That Drive Business",
-    subtitle: "Functional, stylish, and brand-aligned interiors for every commercial need.",
-  },
+ 
 ];
 
 function HomesStyleSection() {

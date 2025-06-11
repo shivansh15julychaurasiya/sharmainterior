@@ -14,6 +14,7 @@ import HowItWorks from "./HowItWorks";
 import ConnectWithUs from "./ConnectWithUs";
 import InTheNews from "./InTheNews";
 import QuoteModal from "./QuoteModel";
+import InteriorOfEveryStyle from "./InteriorOfEveryStyle";
 
 export default function Home() {
 
@@ -79,6 +80,7 @@ export default function Home() {
         <HomeDesignSection />
 
         <HomesStyleSection />
+        <InteriorOfEveryStyle/>
         <InteriorPriceEstimator />
         <WhatWeOffer />
         <TrustedPartners />

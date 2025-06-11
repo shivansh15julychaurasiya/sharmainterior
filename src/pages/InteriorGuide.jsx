@@ -1,8 +1,9 @@
-import React from "react";
+import {useState} from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import { FaDownload } from "react-icons/fa";
-
+import DownloadGuideModal from "./DownloadGuideModel";
 const InteriorGuide = () => {
+    const [modalOpen, setModalOpen] = useState(false);
   return (
     <Container  className="my-5">
       <div
@@ -31,18 +32,12 @@ const InteriorGuide = () => {
               Don’t forget to consider these fundamental design guidelines to
               know before you start interior designing!
             </p>
-            <Button
-              color="danger"
-              style={{
-                marginTop: "20px",
-                borderRadius: "30px",
-                padding: "10px 25px",
-                fontSize: "16px",
-              }}
-            >
-              <FaDownload style={{ marginRight: "8px" }} />
-              DOWNLOAD NOW
-            </Button>
+            <Button color="primary" onClick={() => setModalOpen(true)}>
+                <FaDownload style={{ marginRight: "8px" }} />
+        Download guide
+      </Button>
+      <DownloadGuideModal isOpen={modalOpen} toggle={() => setModalOpen(!modalOpen)} />
+  
           </Col>
         </Row>
       </div>

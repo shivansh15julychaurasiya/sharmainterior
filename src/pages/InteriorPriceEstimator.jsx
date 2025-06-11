@@ -26,7 +26,7 @@ function InteriorPriceEstimator() {
     const navigate = useNavigate();
 
   const handleRedirect = () => {
-    navigate('/price-estimate');
+    navigate('/multiform');
   };
 
   return (
