@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import {
   Container,
   Button,
@@ -28,7 +28,7 @@ const bhkOptions = [
   { type: '4 BHK', sizes: [] },
 ];
 
-const BHKSelector = ({ onNext }) => {
+const BHKSelector = ({ onNext, onBack, onChange }) => {
   const [selectedBHK, setSelectedBHK] = useState('');
   const [expanded, setExpanded] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
@@ -36,7 +36,7 @@ const BHKSelector = ({ onNext }) => {
   const handleBHKSelect = (type) => {
     setSelectedBHK(type);
     setExpanded(expanded === type ? '' : type);
-    setSelectedSize(''); // Reset size on bhk change
+    setSelectedSize('');
   };
 
   const handleSizeSelect = (label) => {
@@ -44,8 +44,25 @@ const BHKSelector = ({ onNext }) => {
   };
 
   const handleNext = () => {
+    console.log('Selected BHK:', selectedBHK);
+    console.log('Selected Size:', selectedSize);
+    if (onChange) {
+      onChange({
+        bhk: selectedBHK,
+        size: selectedSize,
+      });
+    }
     onNext();
   };
+
+  useEffect(() => {
+  console.log("BHK changed:", selectedBHK);
+}, [selectedBHK]);
+
+useEffect(() => {
+  console.log("Size changed:", selectedSize);
+}, [selectedSize]);
+
 
   return (
     <div style={{ backgroundColor: '#f8f8fa', minHeight: '100vh', paddingTop: '40px' }}>
@@ -107,7 +124,7 @@ const BHKSelector = ({ onNext }) => {
                           <div className="d-flex align-items-center gap-2">
                             <Input
                               type="radio"
-                              name={`size-${bhk.type}`} // unique name per BHK
+                              name={`size-${bhk.type}`}
                               value={size.label}
                               checked={selectedSize === size.label}
                               onChange={() => handleSizeSelect(size.label)}
@@ -139,7 +156,7 @@ const BHKSelector = ({ onNext }) => {
             alignItems: 'center',
           }}
         >
-          <Button color="link" style={{ color: '#f8bfbf' }}>
+          <Button color="link" style={{ color: '#f8bfbf' }} onClick={onBack}>
             BACK
           </Button>
           <Button

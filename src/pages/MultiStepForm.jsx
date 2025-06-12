@@ -5,23 +5,22 @@ import PackageSelection from './PackageSelection';
 import QuoteForm from './QuoteForm';
 import KitchenLayoutSelector from './kitchenform/KitchenLayoutSelector ';
 import KitchenMeasurementForm from './kitchenform/KitchenMeasurementForm';
-import KPackageSelection from './kitchenform/KPackageSelection';
+import KPackageSelection from "./kitchenform/KPackageSelection"
 import WardrobeHeightSelector from './wardrove/WardrobeHeightSelector ';
 import WardrobeTypeSelector from './wardrove/WardrobeTypeSelector ';
 import FinishSelector from './wardrove/FinishSelector';
 import MaterialSelector from './wardrove/MaterialSelector';
+
 const MultiStepForm = ({ type }) => {
   const [currentStep, setCurrentStep] = useState(0);
-
-  console.log("Form Type:", type);
-  console.log("Current Step:", currentStep);
+  const [formData, setFormData] = useState({});
 
   const steps =
     type === 'kitchen'
       ? ['KITCHEN LAYOUT', 'MEASUREMENTS', 'PACKAGE', 'GET QUOTE']
       : type === 'wardrobe'
-     ? ['WARDROBE STYLE', 'DIMENSIONS', 'FINISH', 'MATERIAL', 'GET QUOTE']
-      : ['BHK TYPE', 'ROOMS TO DESIGN', 'PACKAGE', 'GET QUOTE'];
+        ? ['WARDROBE STYLE', 'DIMENSIONS', 'PACKAGE', 'GET QUOTE']
+        : ['BHK TYPE', 'ROOMS TO DESIGN', 'PACKAGE', 'GET QUOTE'];
 
   const nextStep = () => {
     if (currentStep < steps.length - 1) {
@@ -35,7 +34,34 @@ const MultiStepForm = ({ type }) => {
     }
   };
 
+  const handleFormDataChange = (stepKey, value) => {
+    setFormData((prev) => ({ ...prev, [stepKey]: value }));
+  };
+
+  const calculatePrice = () => {
+    let total = 0;
+
+    // For full home
+    const bhk = formData.bhk;
+    const rooms = formData.rooms || [];
+    const pkg = formData.package;
+
+    if (bhk === '1 BHK') total += 20000;
+    else if (bhk === '2 BHK') total += 40000;
+    else if (bhk === '3 BHK') total += 60000;
+
+    total += rooms.length * 8000;
+
+    if (pkg === 'Basic') total += 15000;
+    else if (pkg === 'Premium') total += 30000;
+    else if (pkg === 'Luxury') total += 50000;
+
+    return total;
+  };
+
   const renderStepComponent = () => {
+    const finalPrice = calculatePrice();
+
     if (type === 'kitchen') {
       switch (currentStep) {
         case 0:
@@ -54,26 +80,52 @@ const MultiStepForm = ({ type }) => {
         case 0:
           return <WardrobeHeightSelector onNext={nextStep} />;
         case 1:
-          return <WardrobeTypeSelector  onNext={nextStep} onBack={prevStep} />;
+          return <WardrobeTypeSelector onNext={nextStep} onBack={prevStep} />;
         case 2:
           return <FinishSelector onNext={nextStep} onBack={prevStep} />;
         case 3:
-          return <MaterialSelector onNext={nextStep} onBack={prevStep} />;
-        case 4:
-          return <QuoteForm onBack={prevStep} />;
+          return <MaterialSelector onBack={prevStep} />;
         default:
           return null;
       }
     } else {
       switch (currentStep) {
         case 0:
-          return <BHKSelector onNext={nextStep} type={type} />;
+          return (
+           <BHKSelector
+  onNext={nextStep}
+  onBack={prevStep}
+  onChange={(data) => handleFormDataChange('bhkDetails', data)} // Store both bhk and size
+/>
+
+          );
         case 1:
-          return <RoomSelection onNext={nextStep} onBack={prevStep} type={type} />;
+          return (
+            <RoomSelection
+              onNext={nextStep}
+              onBack={prevStep}
+              onChange={(value) => handleFormDataChange('rooms', value)}
+              selected={formData.rooms}
+              type={type}
+            />
+          );
         case 2:
-          return <PackageSelection onNext={nextStep} onBack={prevStep} />;
+          return (
+            <PackageSelection
+              onNext={nextStep}
+              onBack={prevStep}
+              onChange={(value) => handleFormDataChange('package', value)}
+              selected={formData.package}
+            />
+          );
         case 3:
-          return <QuoteForm onBack={prevStep} />;
+          return (
+            <QuoteForm
+              onBack={prevStep}
+              finalPrice={finalPrice}
+              formData={formData}
+            />
+          );
         default:
           return null;
       }

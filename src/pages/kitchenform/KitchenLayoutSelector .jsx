@@ -17,6 +17,7 @@ const KitchenLayoutSelector = ({ onNext, onBack }) => {
       onNext();
     }
   };
+  console.log(selectedLayout)
 
   return (
     <Container className="mt-5">
