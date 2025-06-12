@@ -44,16 +44,15 @@ const BHKSelector = ({ onNext, onBack, onChange }) => {
   };
 
   const handleNext = () => {
-    console.log('Selected BHK:', selectedBHK);
-    console.log('Selected Size:', selectedSize);
-    if (onChange) {
-      onChange({
-        bhk: selectedBHK,
-        size: selectedSize,
-      });
-    }
-    onNext();
-  };
+  if (onNext) onNext();
+  if (onChange) {
+    onChange({
+      bhk: selectedBHK,
+      size: selectedSize,
+    });
+  }
+};
+
 
   useEffect(() => {
   console.log("BHK changed:", selectedBHK);

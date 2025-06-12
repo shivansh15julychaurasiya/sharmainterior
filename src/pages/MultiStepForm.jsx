@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BHKSelector from './BHKSelector';
 import RoomSelection from './RoomSelection';
 import PackageSelection from './PackageSelection';
@@ -37,24 +37,41 @@ const MultiStepForm = ({ type }) => {
   const handleFormDataChange = (stepKey, value) => {
     setFormData((prev) => ({ ...prev, [stepKey]: value }));
   };
+useEffect(() => {
+  console.log(calculatePrice());
+}, []);
+
+
+// console.log(formData.bhkDetails.bhk)
+// console.log(formData.bhkDetails.size)
+
+console.log('BHK:', formData.bhkDetails?.bhk);
+console.log('Size:', formData.bhkDetails?.size);
+
 
   const calculatePrice = () => {
     let total = 0;
 
     // For full home
-    const bhk = formData.bhk;
-    const rooms = formData.rooms || [];
-    const pkg = formData.package;
+    const bhk = formData.bhkDetails?.bhk;
+    const size=formData.bhkDetails?.size
+    // const rooms = formData.rooms || [];
+    const rooms=3;
+    // const pkg = formData.package;
 
-    if (bhk === '1 BHK') total += 20000;
-    else if (bhk === '2 BHK') total += 40000;
-    else if (bhk === '3 BHK') total += 60000;
+    if (bhk === '1 BHK' ) total += 20000;
+    else if (bhk === '2 BHK' && size===' Small') total += 40000;
+    else if (bhk === '2 BHK' && size==='Large') total += 60000;
 
-    total += rooms.length * 8000;
+    else if (bhk === '3 BHK'&& size===" Small") total += 90000;
+    else if (bhk === '3 BHK' &&size==="Large") total += 110000;
 
-    if (pkg === 'Basic') total += 15000;
-    else if (pkg === 'Premium') total += 30000;
-    else if (pkg === 'Luxury') total += 50000;
+
+    total += rooms* 8000;
+
+    // if (pkg === 'Basic') total += 15000;
+    // else if (pkg === 'Premium') total += 30000;
+    // else if (pkg === 'Luxury') total += 50000;
 
     return total;
   };
@@ -65,7 +82,7 @@ const MultiStepForm = ({ type }) => {
     if (type === 'kitchen') {
       switch (currentStep) {
         case 0:
-          return <KitchenLayoutSelector onNext={nextStep} />;
+          return <KitchenLayoutSelector onNext={nextStep}  />;
         case 1:
           return <KitchenMeasurementForm onNext={nextStep} onBack={prevStep} />;
         case 2:

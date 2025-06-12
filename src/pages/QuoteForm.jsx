@@ -21,6 +21,7 @@ const QuoteForm = ({ onBack, finalPrice, formData: designFormData }) => {
     propertyName: '',
     whatsappUpdates: true,
   });
+  console.log(finalPrice)
 
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
