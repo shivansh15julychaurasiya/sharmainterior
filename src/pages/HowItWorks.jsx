@@ -1,6 +1,6 @@
-import React from "react";
+import {useState} from "react";
 import { Container, Row, Col, Button } from "reactstrap";
-
+import QuoteModal from "./QuoteModel";
 const steps = [
   {
     icon: "/images/meet.png",
@@ -30,6 +30,10 @@ const steps = [
 ];
 
 const HowItWorks = () => {
+ const [showModal, setShowModal] = useState(false);
+
+
+
   return (
     <Container className="how-it-works text-center my-5">
       <h2 className="how-title">How it works</h2>
@@ -47,7 +51,16 @@ const HowItWorks = () => {
           </Col>
         ))}
       </Row>
-      <Button className="consult-btn mt-4">BOOK FREE CONSULTATION</Button>
+       <div className="App text-center p-2">
+           <button
+             className="btn btn-primary"
+             onClick={() => setShowModal(true)}
+           >
+             BOOK FREE CONSULTATION
+           </button>
+     
+           <QuoteModal show={showModal} handleClose={() => setShowModal(false)} />
+         </div>
     </Container>
   );
 };
