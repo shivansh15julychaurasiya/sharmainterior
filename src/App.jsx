@@ -19,7 +19,16 @@ export default function App() {
         {/* <Route path="/estimate" element={<Estimate />} /> */}
         {/* <Route path="/contact" element={<Contact />} /> */}
         <Route path="/about" element={<AboutUs />} />
-  <Route path="/multiform" element={<MultiStepForm />} />
+  {/* <Route path="/multiform" element={<MultiStepForm />} />
+
+<Route path="/estimate/full-home" element={<FullHomeEstimator />} />
+<Route path="/estimate/kitchen" element={<KitchenEstimator />} />
+<Route path="/estimate/wardrobe" element={<WardrobeEstimator />} /> */}
+<Route path="/estimate/full-home" element={<MultiStepForm type="full-home" />} />
+<Route path="/estimate/kitchen" element={<MultiStepForm type="kitchen" />} />
+<Route path="/estimate/wardrobe" element={<MultiStepForm type="wardrobe" />} />
+
+
       </Routes>
       <Footer />
     </Router>

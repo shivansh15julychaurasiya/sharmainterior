@@ -7,26 +7,27 @@ const estimatorOptions = [
     title: 'Full Home',
     description: 'Get an approximate costing for your full home interiors.',
     icon: "/images/icon6.png", // Replace with real icon
+    path: '/estimate/full-home'
   },
   {
     title: 'Kitchen',
     description: 'Get an approximate costing for your kitchen interior.',
-    icon: '/images/icon6.png', // Replace with real icon
+    icon: '/images/icon6.png',
+    path: '/estimate/kitchen'
   },
   {
     title: 'Wardrobe',
     description: 'Get an approximate costing for your wardrobe.',
-    icon: '/images/icon6.png', // Replace with real icon
+    icon: '/images/icon6.png',
+    path: '/estimate/wardrobe'
   },
 ];
 
 function InteriorPriceEstimator() {
+  const navigate = useNavigate();
 
-
-    const navigate = useNavigate();
-
-  const handleRedirect = () => {
-    navigate('/multiform');
+  const handleRedirect = (path) => {
+    navigate(path);
   };
 
   return (
@@ -46,7 +47,11 @@ function InteriorPriceEstimator() {
                   <img src={item.icon} alt={item.title} className="estimator-icon mb-3" />
                   <CardTitle tag="h5" className="mb-2 fw-bold">{item.title}</CardTitle>
                   <CardText className="mb-4">{item.description}</CardText>
-                  <Button color="danger " className=" rounded-pill px-5 py-2" onClick={handleRedirect}>
+                  <Button
+                    color="danger"
+                    className="rounded-pill px-5 py-2"
+                    onClick={() => handleRedirect(item.path)}
+                  >
                     CALCULATE <span className="ms-2">&gt;</span>
                   </Button>
                 </CardBody>

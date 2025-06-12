@@ -1,13 +1,27 @@
 import React, { useState } from 'react';
 import BHKSelector from './BHKSelector';
-import PackageSelection from './PackageSelection'; //  import step 2
-import QuoteForm from './QuoteForm'; // final step
 import RoomSelection from './RoomSelection';
-
-const steps = ['BHK TYPE', 'ROOMS TO DESIGN', 'PACKAGE', 'GET QUOTE'];
-
-const MultiStepForm = () => {
+import PackageSelection from './PackageSelection';
+import QuoteForm from './QuoteForm';
+import KitchenLayoutSelector from './kitchenform/KitchenLayoutSelector ';
+import KitchenMeasurementForm from './kitchenform/KitchenMeasurementForm';
+import KPackageSelection from './kitchenform/KPackageSelection';
+import WardrobeHeightSelector from './wardrove/WardrobeHeightSelector ';
+import WardrobeTypeSelector from './wardrove/WardrobeTypeSelector ';
+import FinishSelector from './wardrove/FinishSelector';
+import MaterialSelector from './wardrove/MaterialSelector';
+const MultiStepForm = ({ type }) => {
   const [currentStep, setCurrentStep] = useState(0);
+
+  console.log("Form Type:", type);
+  console.log("Current Step:", currentStep);
+
+  const steps =
+    type === 'kitchen'
+      ? ['KITCHEN LAYOUT', 'MEASUREMENTS', 'PACKAGE', 'GET QUOTE']
+      : type === 'wardrobe'
+     ? ['WARDROBE STYLE', 'DIMENSIONS', 'FINISH', 'MATERIAL', 'GET QUOTE']
+      : ['BHK TYPE', 'ROOMS TO DESIGN', 'PACKAGE', 'GET QUOTE'];
 
   const nextStep = () => {
     if (currentStep < steps.length - 1) {
@@ -22,24 +36,57 @@ const MultiStepForm = () => {
   };
 
   const renderStepComponent = () => {
-    switch (currentStep) {
-      case 0:
-        return <BHKSelector onNext={nextStep} />;
-      case 1:
-        return <RoomSelection onNext={nextStep} onBack={prevStep} />;
-      case 2:
-        return <PackageSelection onNext={nextStep} onBack={prevStep} />;
-      case 3:
-        return <QuoteForm onBack={prevStep} />;
-      default:
-        return <div className="text-center mt-5">Step not implemented yet</div>;
+    if (type === 'kitchen') {
+      switch (currentStep) {
+        case 0:
+          return <KitchenLayoutSelector onNext={nextStep} />;
+        case 1:
+          return <KitchenMeasurementForm onNext={nextStep} onBack={prevStep} />;
+        case 2:
+          return <KPackageSelection onNext={nextStep} onBack={prevStep} />;
+        case 3:
+          return <QuoteForm onBack={prevStep} />;
+        default:
+          return null;
+      }
+    } else if (type === 'wardrobe') {
+      switch (currentStep) {
+        case 0:
+          return <WardrobeHeightSelector onNext={nextStep} />;
+        case 1:
+          return <WardrobeTypeSelector  onNext={nextStep} onBack={prevStep} />;
+        case 2:
+          return <FinishSelector onNext={nextStep} onBack={prevStep} />;
+        case 3:
+          return <MaterialSelector onNext={nextStep} onBack={prevStep} />;
+        case 4:
+          return <QuoteForm onBack={prevStep} />;
+        default:
+          return null;
+      }
+    } else {
+      switch (currentStep) {
+        case 0:
+          return <BHKSelector onNext={nextStep} type={type} />;
+        case 1:
+          return <RoomSelection onNext={nextStep} onBack={prevStep} type={type} />;
+        case 2:
+          return <PackageSelection onNext={nextStep} onBack={prevStep} />;
+        case 3:
+          return <QuoteForm onBack={prevStep} />;
+        default:
+          return null;
+      }
     }
   };
 
   return (
-    <div style={{ backgroundColor: '#f9f9f9', minHeight: '60vh', padding: '30px 0' }} className='mt-4'>
-      {/* Step Indicator */}
+    <div style={{ backgroundColor: '#f9f9f9', minHeight: '60vh', padding: '30px 0' }}>
       <div style={{ maxWidth: '700px', margin: 'auto', paddingBottom: '10px' }}>
+        <h4 className="text-center text-uppercase mb-4" style={{ color: '#f2545f' }}>
+          Estimating for: {type?.replace('-', ' ') || 'Home'}
+        </h4>
+
         <div className="d-flex justify-content-between align-items-center mb-2">
           {steps.map((label, index) => (
             <div key={index} style={{ textAlign: 'center', flex: 1 }}>
@@ -66,13 +113,11 @@ const MultiStepForm = () => {
           ))}
         </div>
 
-        {/* Step Progress Bar */}
         <div style={{ textAlign: 'right', fontWeight: 'bold', color: 'blue' }}>
           {currentStep + 1}/{steps.length}
         </div>
       </div>
 
-      {/* Step Form */}
       {renderStepComponent()}
     </div>
   );
