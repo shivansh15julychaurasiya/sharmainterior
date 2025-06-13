@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const packages = [
   {
@@ -12,28 +12,32 @@ const packages = [
     id: 'premium',
     name: 'Premium (₹₹)',
     description: "A balanced mix of style and functionality with premium quality materials and finishes.",
-    image: '/images/premium.jpg', // Replace with your actual image
+    image: '/images/premium.jpg',
     features: ['Premium materials', 'Customizable options', 'Stylish aesthetics'],
   },
   {
     id: 'luxe',
     name: 'Luxe (₹₹₹)',
     description: "Top-of-the-line home interior solutions with luxury furnishings and finishes.",
-    image: '/images/luxe.png', // Replace with your actual image
+    image: '/images/luxe.png',
     features: ['Luxury finishes', 'Exclusive designs', 'Premium service'],
   },
 ];
 
+const PackageSelection = ({ onNext, onBack, onChange, selected = '' }) => {
+  const [selectedPackage, setSelectedPackage] = useState(selected);
 
-const PackageSelection = ({ onNext, onBack }) => {
-  const [selectedPackage, setSelectedPackage] = useState('');
+  useEffect(() => {
+    console.log("Selected Package:", selectedPackage);
+  }, [selectedPackage]);
 
   const handleSelection = (pkgId) => {
     setSelectedPackage(pkgId);
   };
 
   const handleNext = () => {
-    onNext({ selectedPackage }); //  removed alert validation
+    onChange(selectedPackage); // ✅ send package to parent
+    onNext();                  // ✅ move to next step
   };
 
   return (
@@ -66,7 +70,7 @@ const PackageSelection = ({ onNext, onBack }) => {
           <ul style={styles.featureList}>
             {pkg.features.map((feature, index) => (
               <li key={index} style={styles.featureItem}>
-                 {feature}
+                {feature}
               </li>
             ))}
           </ul>
@@ -74,18 +78,14 @@ const PackageSelection = ({ onNext, onBack }) => {
       ))}
 
       <div style={styles.navButtons}>
-        <button style={styles.backButton} onClick={onBack}>
-          BACK
-        </button>
-        <button style={styles.nextButton} onClick={handleNext}>
-          NEXT
-        </button>
+        <button style={styles.backButton} onClick={onBack}>BACK</button>
+        <button style={styles.nextButton} onClick={handleNext}>NEXT</button>
       </div>
     </div>
   );
 };
 
-//  Inline Styles
+// Inline Styles
 const styles = {
   container: {
     padding: '2rem',
@@ -150,7 +150,7 @@ const styles = {
   nextButton: {
     padding: '10px 24px',
     backgroundColor: '#fc5c65',
-    color: 'blue',
+    color: 'white',
     border: 'none',
     borderRadius: '20px',
     fontWeight: 'bold',

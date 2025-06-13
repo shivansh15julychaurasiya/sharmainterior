@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import BHKSelector from './BHKSelector';
 import RoomSelection from './RoomSelection';
 import PackageSelection from './PackageSelection';
 import QuoteForm from './QuoteForm';
 import KitchenLayoutSelector from './kitchenform/KitchenLayoutSelector ';
 import KitchenMeasurementForm from './kitchenform/KitchenMeasurementForm';
-import KPackageSelection from "./kitchenform/KPackageSelection"
+import KPackageSelection from './kitchenform/KPackageSelection';
 import WardrobeHeightSelector from './wardrove/WardrobeHeightSelector ';
 import WardrobeTypeSelector from './wardrove/WardrobeTypeSelector ';
 import FinishSelector from './wardrove/FinishSelector';
@@ -37,41 +37,49 @@ const MultiStepForm = ({ type }) => {
   const handleFormDataChange = (stepKey, value) => {
     setFormData((prev) => ({ ...prev, [stepKey]: value }));
   };
-useEffect(() => {
-  console.log(calculatePrice());
-}, []);
-
-
-// console.log(formData.bhkDetails.bhk)
-// console.log(formData.bhkDetails.size)
-
-console.log('BHK:', formData.bhkDetails?.bhk);
-console.log('Size:', formData.bhkDetails?.size);
-
 
   const calculatePrice = () => {
     let total = 0;
 
-    // For full home
     const bhk = formData.bhkDetails?.bhk;
-    const size=formData.bhkDetails?.size
-    // const rooms = formData.rooms || [];
-    const rooms=3;
-    // const pkg = formData.package;
+    const size = formData.bhkDetails?.size;
+    const rooms = formData.rooms || [];
+    const pkg = formData.package;
 
-    if (bhk === '1 BHK' ) total += 20000;
-    else if (bhk === '2 BHK' && size===' Small') total += 40000;
-    else if (bhk === '2 BHK' && size==='Large') total += 60000;
+    // Base price
+    if (bhk === '1 BHK') total += 20000;
+    else if (bhk === '2 BHK' && size === 'Small') total += 40000;
+    else if (bhk === '2 BHK' && size === 'Large') total += 60000;
+    else if (bhk === '3 BHK' && size === 'Small') total += 90000;
+    else if (bhk === '3 BHK' && size === 'Large') total += 110000;
 
-    else if (bhk === '3 BHK'&& size===" Small") total += 90000;
-    else if (bhk === '3 BHK' &&size==="Large") total += 110000;
+    // Room pricing
+    const roomPricing = {
+      'Living Room': 10000,
+      'Kitchen': 8000,
+      'Bedroom': 7000,
+      'Bathroom': 5000,
+      'Dining': 6000,
+    };
 
+    rooms.forEach((room) => {
+      const pricePerRoom = roomPricing[room.name] || 0;
+      const count = room.count ?? 1;
+      total += pricePerRoom * count;
+    });
 
-    total += rooms* 8000;
+    // Package price
+    if (pkg === 'essentials') total += 15000;
+    else if (pkg === 'premium') total += 30000;
+    else if (pkg === 'luxe') total += 50000;
 
-    // if (pkg === 'Basic') total += 15000;
-    // else if (pkg === 'Premium') total += 30000;
-    // else if (pkg === 'Luxury') total += 50000;
+    console.log("Calculation Breakdown:", {
+      bhk,
+      size,
+      rooms,
+      pkg,
+      total
+    });
 
     return total;
   };
@@ -82,13 +90,13 @@ console.log('Size:', formData.bhkDetails?.size);
     if (type === 'kitchen') {
       switch (currentStep) {
         case 0:
-          return <KitchenLayoutSelector onNext={nextStep}  />;
+          return <KitchenLayoutSelector onNext={nextStep} />;
         case 1:
           return <KitchenMeasurementForm onNext={nextStep} onBack={prevStep} />;
         case 2:
           return <KPackageSelection onNext={nextStep} onBack={prevStep} />;
         case 3:
-          return <QuoteForm onBack={prevStep} />;
+          return <QuoteForm onBack={prevStep} finalPrice={finalPrice} formData={formData} />;
         default:
           return null;
       }
@@ -109,12 +117,11 @@ console.log('Size:', formData.bhkDetails?.size);
       switch (currentStep) {
         case 0:
           return (
-           <BHKSelector
-  onNext={nextStep}
-  onBack={prevStep}
-  onChange={(data) => handleFormDataChange('bhkDetails', data)} // Store both bhk and size
-/>
-
+            <BHKSelector
+              onNext={nextStep}
+              onBack={prevStep}
+              onChange={(data) => handleFormDataChange('bhkDetails', data)}
+            />
           );
         case 1:
           return (

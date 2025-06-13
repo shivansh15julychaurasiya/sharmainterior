@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+
 import {
   Container,
   Card,
@@ -36,26 +38,24 @@ const QuoteForm = ({ onBack, finalPrice, formData: designFormData }) => {
   };
 
   const handleSubmit = async () => {
-    const fullData = {
-      ...designFormData,
-      ...formData,
-      
-    };
-
-    try {
-      setLoading(true);
-      console.log(fullData)
-      // const response = await axios.post('http://localhost:8080/api/submit-quote', fullData);
-      // console.log(' Server Response:', response.data);
-      setSubmitted(true);
-      setError('');
-    } catch (err) {
-      console.error(' Error submitting form:', err);
-      setError('Failed to submit form. Please try again.');
-    } finally {
-      setLoading(false);
-    }
+  const fullData = {
+    ...designFormData,
+    ...formData,
   };
+console.log(fullData)
+  try {
+    setLoading(true);
+    const response = await axios.post('http://localhost:8080/api/submit-quote', fullData);
+    console.log(' Server Response:', response.data);
+    setSubmitted(true);
+    setError('');
+  } catch (err) {
+    console.error(' Error submitting form:', err);
+    setError('Failed to submit form. Please try again.');
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div style={{ backgroundColor: '#f8f8fa', minHeight: '100vh', paddingTop: '40px' }}>
@@ -147,8 +147,8 @@ const QuoteForm = ({ onBack, finalPrice, formData: designFormData }) => {
               </>
             ) : (
               <div className="text-center">
-                <h5 className="text-success mt-4 mb-2">🎉 Form submitted successfully!</h5>
-                <h4 style={{ color: '#28a745' }}>Your Estimated Price: ₹{finalPrice}</h4>
+                <h5 className="text-success mt-4 mb-2">🎉 Thanks for contacting us , We will get back to you very soon!</h5>
+                <h4 style={{ color: '33c4ff' }}>Your Estimated Price: ₹{finalPrice}</h4>
               </div>
             )}
           </CardBody>

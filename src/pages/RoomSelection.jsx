@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const initialRooms = [
   { name: 'Living Room', count: 1 },
@@ -8,8 +8,13 @@ const initialRooms = [
   { name: 'Dining', count: 1 },
 ];
 
-const RoomSelection = ({ onNext, onBack }) => {
-  const [rooms, setRooms] = useState(initialRooms);
+const RoomSelection = ({ onNext, onBack, onChange, selected = [] }) => {
+  const [rooms, setRooms] = useState(selected.length ? selected : initialRooms);
+
+  useEffect(() => {
+    // Log current room selection anytime it changes
+    console.log("Selected Rooms:", rooms);
+  }, [rooms]);
 
   const handleIncrement = (index) => {
     const newRooms = [...rooms];
@@ -26,7 +31,8 @@ const RoomSelection = ({ onNext, onBack }) => {
   };
 
   const handleNext = () => {
-    onNext({ rooms });
+    onChange(rooms); //  Send rooms to parent
+    onNext();         //  Move to next step
   };
 
   return (
@@ -55,7 +61,6 @@ const RoomSelection = ({ onNext, onBack }) => {
   );
 };
 
-// 👉 Inline styling (you can replace with classes or styled-components if needed)
 const styles = {
   container: {
     padding: '2rem',
@@ -100,7 +105,7 @@ const styles = {
   },
   counterBtn: {
     backgroundColor: '#fc5c65',
-    color: 'blue',
+    color: 'white',
     border: 'none',
     borderRadius: '50%',
     width: '32px',
