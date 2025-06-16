@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Navbar,
   NavbarBrand,
@@ -7,40 +7,46 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Button
 } from 'reactstrap';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import QuoteModal from '../pages/QuoteModel';
 
 function NavigationBar() {
-
- const [showModal, setShowModal] = useState(false);
-
+  const [showModal, setShowModal] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const toggle = () => setIsOpen(!isOpen);
+  const [isAdmin, setIsAdmin] = useState(false);
+
   const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const role = localStorage.getItem('role');
+    setIsAdmin(role === 'admin');
+  }, [location]); // Update on route change
+
+  const handleLogout = () => {
+    localStorage.removeItem('role');
+    setIsAdmin(false);
+    navigate('/');
+  };
+
+  const toggle = () => setIsOpen(!isOpen);
 
   return (
     <Navbar expand="md" light className="shadow-sm bg-white fixed-top py-2 px-1">
       <NavbarBrand tag={Link} to="/" className="fw-bold fs-4 text-primary text-dark">
-      <img
-      width="125px"
-  src="/images/sharmalogo2.png"
-  alt="Sharma Interior Logo"
-  className="logo-img "
-/>
-
-
+        <img
+          width="125px"
+          src="/images/sharmalogo2.png"
+          alt="Sharma Interior Logo"
+          className="logo-img"
+        />
       </NavbarBrand>
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>
         <Nav className="ms-auto align-items-center" navbar>
           <NavItem>
-            <NavLink
-              tag={Link}
-              to="/"
-              className={location.pathname === '/' ? 'active' : ''}
-            >
+            <NavLink tag={Link} to="/" className={location.pathname === '/' ? 'active' : ''}>
               Home
             </NavLink>
           </NavItem>
@@ -53,24 +59,6 @@ function NavigationBar() {
               Services
             </NavLink>
           </NavItem>
-          {/* <NavItem>
-            <NavLink
-              tag={Link}
-              to="/projects"
-              className={location.pathname === '/projects' ? 'active' : ''}
-            >
-              Projects
-            </NavLink>
-          </NavItem> */}
-          {/* <NavItem>
-            <NavLink
-              tag={Link}
-              to="/estimate"
-              className={location.pathname === '/estimate' ? 'active' : ''}
-            >
-              Estimate
-            </NavLink>
-          </NavItem> */}
           <NavItem>
             <NavLink
               tag={Link}
@@ -81,17 +69,40 @@ function NavigationBar() {
             </NavLink>
           </NavItem>
           <NavItem>
-             <div className="App text-center p-2">
-      <button
-        className="btn btn-danger"
-        onClick={() => setShowModal(true)}
-      >
-        Get Free Quote
-      </button>
-
-      <QuoteModal show={showModal} handleClose={() => setShowModal(false)} />
-    </div>
+            <button className="btn btn-danger mx-2" onClick={() => setShowModal(true)}>
+              Get Free Quote
+            </button>
+            <QuoteModal show={showModal} handleClose={() => setShowModal(false)} />
           </NavItem>
+
+          {isAdmin ? (
+            <>
+              <NavItem>
+                <NavLink
+                  tag={Link}
+                  to="/admin/leads"
+                  className={location.pathname === '/admin/leads' ? 'active' : ''}
+                >
+                  Leads Panel
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <button className="btn btn-outline-danger ms-2" onClick={handleLogout}>
+                  Logout
+                </button>
+              </NavItem>
+            </>
+          ) : (
+            <NavItem>
+              <NavLink
+                tag={Link}
+                to="/admin-login"
+                className={location.pathname === '/admin-login' ? 'active' : ''}
+              >
+                Admin Login
+              </NavLink>
+            </NavItem>
+          )}
         </Nav>
       </Collapse>
     </Navbar>
