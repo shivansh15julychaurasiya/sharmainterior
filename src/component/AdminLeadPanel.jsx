@@ -15,7 +15,10 @@ import {
 import axios from "axios";
 import { FaTrashAlt } from "react-icons/fa"; // icon for delete
 
-const API_BASE_URL = "http://localhost:8080/api/leads"; // change for production
+// const API_BASE_URL = "http://localhost:8080/api/leads"; // change for production
+// api.js or wherever your API base URL is defined
+const API_BASE_URL = "https://sharmainteriorbackend1-production.up.railway.app/api/leads";
+
 
 const AdminLeadPanel = () => {
   const [leads, setLeads] = useState([]);
@@ -51,8 +54,8 @@ const AdminLeadPanel = () => {
   };
 
   return (
-    <Container  style={{ marginTop: "60px" }} className="mb-2">
-      <Card className="shadow-lg border-0 mt-5 ">
+    <Container  style={{ marginTop: "100px" }} className="mb-5">
+      <Card className="shadow-lg border-0 mt-5 mb-5">
         <CardBody className="mt-5">
           <h2
             className="text-white text-center p-3 mb-4 rounded"
