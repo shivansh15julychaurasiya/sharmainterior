@@ -13,9 +13,8 @@ import {
   Col,
   Alert,
 } from 'reactstrap';
-// import axios from 'axios';
 
-const QuoteForm = ({ onBack, finalPrice, formData: designFormData }) => {
+const QuoteForm = ({ onBack, finalPrice }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -23,7 +22,6 @@ const QuoteForm = ({ onBack, finalPrice, formData: designFormData }) => {
     propertyName: '',
     whatsappUpdates: true,
   });
-  console.log(finalPrice)
 
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
@@ -38,31 +36,38 @@ const QuoteForm = ({ onBack, finalPrice, formData: designFormData }) => {
   };
 
   const handleSubmit = async () => {
-  const fullData = {
-    ...designFormData,
-    ...formData,
-  };
-console.log(fullData)
-  try {
-    setLoading(true);
-    // const response = await axios.post('http://localhost:8080/api/submit-quote', fullData);
-    const response = await axios.post('https://sharmainteriorbackend1-production.up.railway.app/api/submit-quote', fullData);
+    const fullData = { ...formData }; // ✅ Only this form's data (not designFormData)
+    console.log('Submitting:', fullData);
 
-    console.log(' Server Response:', response.data);
-    setSubmitted(true);
-    setError('');
-  } catch (err) {
-    console.error(' Error submitting form:', err);
-    setError('Failed to submit form. Please try again.');
-  } finally {
-    setLoading(false);
-  }
-};
+    try {
+      setLoading(true);
+      const response = await axios.post(
+        'https://sharmainteriorbackend1-production.up.railway.app/api/submit-quote',
+        fullData
+      );
+      console.log('Server Response:', response.data);
+      setSubmitted(true);
+      setError('');
+    } catch (err) {
+      console.error('Error submitting form:', err);
+      setError('Failed to submit form. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div style={{ backgroundColor: '#f8f8fa', minHeight: '100vh', paddingTop: '40px' }}>
       <Container>
-        <Card style={{ maxWidth: '700px', margin: 'auto', padding: '30px', borderRadius: '20px', border: 'none' }}>
+        <Card
+          style={{
+            maxWidth: '700px',
+            margin: 'auto',
+            padding: '30px',
+            borderRadius: '20px',
+            border: 'none',
+          }}
+        >
           <CardBody>
             <h4 className="fw-bold text-center mb-4">Your estimate is almost ready</h4>
 
@@ -75,6 +80,7 @@ console.log(fullData)
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
+                    required
                   />
                 </FormGroup>
 
@@ -85,6 +91,7 @@ console.log(fullData)
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
+                    required
                   />
                 </FormGroup>
 
@@ -95,6 +102,7 @@ console.log(fullData)
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
+                    required
                   />
                 </FormGroup>
 
@@ -119,6 +127,7 @@ console.log(fullData)
                     name="propertyName"
                     value={formData.propertyName}
                     onChange={handleChange}
+                    required
                   />
                 </FormGroup>
 
@@ -149,8 +158,12 @@ console.log(fullData)
               </>
             ) : (
               <div className="text-center">
-                <h5 className="text-success mt-4 mb-2">🎉 Thanks for contacting us , We will get back to you very soon!</h5>
-                <h4 style={{ color: '33c4ff' }}>Your Estimated Price: ₹{finalPrice}</h4>
+                <h5 className="text-success mt-4 mb-2">
+                  🎉 Thanks for contacting us, we will get back to you very soon!
+                </h5>
+                <h4 style={{ color: '#33c4ff' }}>
+                  Your Estimated Price: ₹{finalPrice}
+                </h4>
               </div>
             )}
           </CardBody>
