@@ -28,7 +28,7 @@ const AdminLogin = () => {
     setError("");
 
     try {
-    //   const res = await axios.post("http://localhost:8080/api/admin/login", credentials);
+    //   const res = await axios.post("http://localhost:8081/api/admin/login", credentials);
     const res = await axios.post("https://sharmainteriorbackend1-production.up.railway.app/api/admin/login", credentials);
 
       if (res.status === 200) {
@@ -36,7 +36,7 @@ const AdminLogin = () => {
         navigate("/admin/leads");
       }
     } catch (err) {
-      setError(err.response?.data || "Login failed");
+      setError(err.response?.data || "Login failed !");
     }
   };
 

@@ -1,11 +1,13 @@
-import {useState} from "react";
+import { useState } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import { FaDownload } from "react-icons/fa";
-import DownloadGuideModal from "./DownloadGuideModel";
+import QuoteModal from "./QuoteModel"; // ✅ use the enhanced QuoteModal with downloadMode
+
 const InteriorGuide = () => {
-    const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
-    <Container  className="my-5">
+    <Container className="my-5">
       <div
         style={{
           backgroundColor: "#FAE7B0",
@@ -33,11 +35,16 @@ const InteriorGuide = () => {
               know before you start interior designing!
             </p>
             <Button color="primary" onClick={() => setModalOpen(true)}>
-                <FaDownload style={{ marginRight: "8px" }} />
-        Download guide
-      </Button>
-      <DownloadGuideModal isOpen={modalOpen} toggle={() => setModalOpen(!modalOpen)} />
-  
+              <FaDownload style={{ marginRight: "8px" }} />
+              Download guide
+            </Button>
+
+            {/* ✅ Using QuoteModal instead of DownloadGuideModal with downloadMode */}
+            <QuoteModal
+              show={modalOpen}
+              handleClose={() => setModalOpen(false)}
+              downloadMode={true} // 🟢 This enables PDF download only here
+            />
           </Col>
         </Row>
       </div>

@@ -42,7 +42,9 @@ const QuoteForm = ({ onBack, finalPrice }) => {
     try {
       setLoading(true);
       const response = await axios.post(
-        'https://sharmainteriorbackend1-production.up.railway.app/api/submit-quote',
+        // "http://localhost:8081/api/submit-quote",
+        "https://sharmainteriorbackend1-production.up.railway.app/api/submit-quote",
+
         fullData
       );
       console.log('Server Response:', response.data);

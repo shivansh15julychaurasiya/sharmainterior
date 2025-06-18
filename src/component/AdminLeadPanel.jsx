@@ -13,11 +13,11 @@ import {
   Badge,
 } from "reactstrap";
 import axios from "axios";
-import { FaTrashAlt } from "react-icons/fa"; // icon for delete
+import { FaTrashAlt } from "react-icons/fa";
 
-// const API_BASE_URL = "http://localhost:8080/api/leads"; // change for production
-// api.js or wherever your API base URL is defined
-const API_BASE_URL = "https://sharmainteriorbackend1-production.up.railway.app/api/leads";
+// ✅ Update API base URL to match delete and fetch endpoints
+// const API_BASE_URL = "http://localhost:8081/api";
+const API_BASE_URL = "https://sharmainteriorbackend1-production.up.railway.app";
 
 
 const AdminLeadPanel = () => {
@@ -31,7 +31,7 @@ const AdminLeadPanel = () => {
   const fetchLeads = async () => {
     setLoading(true);
     try {
-      const res = await axios.get(API_BASE_URL);
+      const res = await axios.get(`${API_BASE_URL}/api/leads`);
       setLeads(res.data);
     } catch (err) {
       console.error("Failed to fetch leads", err);
@@ -45,7 +45,7 @@ const AdminLeadPanel = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`${API_BASE_URL}/${deleteId}`);
+      await axios.delete(`${API_BASE_URL}/api/delete-quote/${deleteId}`);
       toggle();
       fetchLeads();
     } catch (err) {
@@ -54,7 +54,7 @@ const AdminLeadPanel = () => {
   };
 
   return (
-    <Container  style={{ marginTop: "100px" }} className="mb-5">
+    <Container style={{ marginTop: "100px" }} className="mb-5">
       <Card className="shadow-lg border-0 mt-5 mb-5">
         <CardBody className="mt-5">
           <h2
@@ -86,8 +86,6 @@ const AdminLeadPanel = () => {
                   <th>Email</th>
                   <th>Phone</th>
                   <th>Property</th>
-                  <th>BHK</th>
-                  <th>Size</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -107,14 +105,6 @@ const AdminLeadPanel = () => {
                       <td>{lead.phone}</td>
                       <td>
                         <Badge color="info">{lead.propertyName}</Badge>
-                      </td>
-                      <td>
-                        <Badge color="success">{lead.bhkDetails?.bhk}</Badge>
-                      </td>
-                      <td>
-                        <Badge color="warning" pill>
-                          {lead.bhkDetails?.size}
-                        </Badge>
                       </td>
                       <td>
                         <Button
