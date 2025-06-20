@@ -32,9 +32,11 @@ function QuoteModal({ show, handleClose, downloadMode = false }) {
       const response = await axios.post(
         // "http://localhost:8081/api/submit-quote",
         "https://sharmainteriorbackend1-production.up.railway.app/api/submit-quote",
+        
 // 
         fullData
       );
+      console.log(response)
       setSubmitted(true);
       setError("");
 

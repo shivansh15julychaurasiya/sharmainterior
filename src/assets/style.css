@@ -545,67 +545,130 @@
 }
 /* In the new css */
 .news-section {
-  background-color: #fff;
-  padding: 60px 20px;
-  text-align: center;
+  background: linear-gradient(to right, #edf2f7, #e2e8f0);
 }
 
 .news-heading {
-  font-size: 2.2rem;
-  font-weight: bold;
-  color: #2d2d2d;
-  margin-bottom: 40px;
+  font-weight: 700;
+  font-size: 32px;
+  color: #1a202c;
 }
 
 .news-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 24px;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 .news-card {
-  background-color: #fff;
-  border: 1px solid #eee;
-  border-radius: 6px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
-  padding: 24px;
-  width: 260px;
-  font-style: italic;
-  transition: box-shadow 0.3s ease;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-left: 4px solid #3b82f6;
+  min-height: 230px;
 }
 
 .news-card:hover {
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
-.news-logo {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 12px;
-  font-style: normal;
-  color: #333;
+/* ✅ Logo wrapper for consistent sizing */
+.news-logo-wrapper {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* change to center if needed */
+  overflow: hidden;
+}
+
+.news-logo-img {
+  max-height: 100%;
+  max-width: 140px;
+  object-fit: contain;
+  display: block;
 }
 
 .news-text {
-  font-size: 0.95rem;
-  color: #444;
+  font-size: 15px;
+  color: #4a5568;
+  margin-bottom: 1rem;
+  line-height: 1.5;
 }
+
+.news-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: #3b82f6;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.news-link:hover {
+  color: #1d4ed8;
+}
+
+
 /* about us css */
-.about-page {
+.aboutus-wrapper {
   font-family: 'Segoe UI', sans-serif;
 }
 
 .hero-section {
-  background: url('/public/images/image20.jpg') center/cover no-repeat;
-  min-height: 500px;
+  background: linear-gradient(135deg, #6b73ff, #000dff);
+  padding: 80px 0;
+}
+
+.section-title {
+  font-weight: 700;
+  color: #1a202c;
+}
+
+.info-card {
+  border: none;
+  border-left: 5px solid #6366f1;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+}
+
+.service-card {
+  border: none;
+  border-radius: 16px;
+  background: #f9fafb;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+}
+
+.service-card .icon {
+  font-size: 40px;
+  margin-bottom: 12px;
+}
+
+.cta-section {
+  background: linear-gradient(90deg, #ff416c, #ff4b2b);
+  padding: 60px 0;
 }
 
 .footer-cta {
   background-color: #2c3e50;
 }
 /* services css */
-.service-card {
+/* .service-card {
   transition: transform 0.3s ease-in-out;
 }
 
@@ -615,7 +678,72 @@
 
 .service-icon i {
   color: #5A189A;
+} */
+.services-wrapper {
+  position: relative;
+  background-image: url('https://images.pexels.com/photos/271800/pexels-photo-271800.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+  min-height: 100vh;
+  filter: brightness(1.3); /* Brighter background */
 }
+
+
+.services-wrapper .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 0;
+}
+
+.service-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 0 transparent;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.card-image-static {
+  width: 100%;
+  height: 220px; /* Adjust height as needed */
+  object-fit: cover;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+.service-card {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  color: #333;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+}
+
+
+.card-content h5 {
+  color: #ffc107;
+  margin-bottom: 0.5rem;
+}
+
+.card-content p {
+  color: #f1f1f1;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
 /* navbar logo css */
 .logo-img {
   height: 70px; /* keep small actual height */
@@ -694,7 +822,65 @@
   color: gray;
 }
 
+/* testimonial  page */
+/* Background for the whole section */
+.testimonial-section {
+  background: linear-gradient(135deg, #3b0764, #9333ea);
+  padding: 4rem 1rem;
+}
 
+/* Grid layout */
+.testimonial-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
 
+/* Beautiful glass card */
+.testimonial-card {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  backdrop-filter: blur(14px) saturate(120%);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
+  border-radius: 20px;
+  padding: 2rem;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
+.testimonial-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+}
 
+/* Quote icon */
+.quote-icon {
+  font-size: 30px;
+  color: #facc15;
+  margin-bottom: 1rem;
+}
+
+/* Feedback text */
+.testimonial-text {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #e2e8f0;
+}
+
+/* Avatar image */
+.testimonial-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+}
+
+/* Responsive typography */
+@media (max-width: 576px) {
+  .testimonial-card {
+    padding: 1.5rem;
+  }
+}
+/* Experience  */

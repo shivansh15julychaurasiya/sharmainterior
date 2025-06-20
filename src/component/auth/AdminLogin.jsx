@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 import {
   Container,
   Form,
@@ -19,6 +22,10 @@ const AdminLogin = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  useEffect(() => {
+    AOS.init({ duration: 800 });
+  }, []);
+
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
@@ -28,40 +35,57 @@ const AdminLogin = () => {
     setError("");
 
     try {
-    //   const res = await axios.post("http://localhost:8081/api/admin/login", credentials);
-    const res = await axios.post("https://sharmainteriorbackend1-production.up.railway.app/api/admin/login", credentials);
+      const res = await axios.post(
+        "https://sharmainteriorbackend1-production.up.railway.app/api/admin/login",
+        credentials
+      );
 
       if (res.status === 200) {
         localStorage.setItem("role", "admin");
         navigate("/admin/leads");
       }
     } catch (err) {
-      setError(err.response?.data || "Login failed !");
+      setError(err.response?.data || "Login failed!");
     }
   };
 
   return (
     <Container
+      fluid
       className="d-flex justify-content-center align-items-center"
       style={{
         minHeight: "100vh",
-        backgroundImage: `url("/images/image.png")`, // ✅ your image path
+        backgroundImage: `url("/images/hero1.jpg")`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
     >
-      <Card style={{ width: "400px", boxShadow: "0 0 10px rgba(0,0,0,0.2)" }}>
+      <Card
+        data-aos="zoom-in"
+        style={{
+          width: "400px",
+          backgroundColor: "rgba(255, 255, 255, 0.06)",
+          backdropFilter: "blur(14px)",
+          WebkitBackdropFilter: "blur(14px)",
+          border: "1px solid rgba(255, 255, 255, 0.2)",
+          borderRadius: "14px",
+          boxShadow: "0 8px 25px rgba(0, 0, 0, 0.4)",
+          color: "#fff",
+        }}
+      >
         <CardBody>
-          <CardTitle tag="h4" className="text-center mb-4">
-            Admin Login
+          <CardTitle tag="h4" className="text-center mb-4 text-white">
+            Admin Login Only!
           </CardTitle>
 
           {error && <Alert color="danger">{error}</Alert>}
 
-          <Form onSubmit={handleLogin}>
+          <Form onSubmit={handleLogin} data-aos="fade-up">
             <FormGroup>
-              <Label for="username">Username</Label>
+              <Label for="username" className="text-white">
+                Username
+              </Label>
               <Input
                 type="text"
                 name="username"
@@ -70,11 +94,18 @@ const AdminLogin = () => {
                 value={credentials.username}
                 onChange={handleChange}
                 required
+                style={{
+                  backgroundColor: "rgba(255,255,255,0.85)",
+                  border: "none",
+                  color: "#000",
+                }}
               />
             </FormGroup>
 
             <FormGroup>
-              <Label for="password">Password</Label>
+              <Label for="password" className="text-white">
+                Password
+              </Label>
               <Input
                 type="password"
                 name="password"
@@ -83,10 +114,15 @@ const AdminLogin = () => {
                 value={credentials.password}
                 onChange={handleChange}
                 required
+                style={{
+                  backgroundColor: "rgba(255,255,255,0.85)",
+                  border: "none",
+                  color: "#000",
+                }}
               />
             </FormGroup>
 
-            <Button color="primary" block type="submit">
+            <Button color="warning" block type="submit" className="fw-bold mt-3">
               Login
             </Button>
           </Form>
