@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect ,useState} from 'react';
 import {
   Container,
   Row,
@@ -11,8 +11,13 @@ import {
 } from 'reactstrap';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import QuoteModal from '../pages/QuoteModel';
 
 const AboutUs = () => {
+
+   const [showModal, setShowModal] = useState(false);
+    // const [isOpen, setIsOpen] = useState(false);
+
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
   }, []);
@@ -33,9 +38,10 @@ const AboutUs = () => {
         <Container>
           <h1 className="display-4 fw-bold">Elevate Your Everyday Spaces</h1>
           <p className="lead">Sharma Interior crafts beautiful, functional interiors that reflect your unique lifestyle and taste.</p>
-          <Button color="light" size="lg" outline>
-            Get a Quote
-          </Button>
+          <button className="btn btn-danger mx-2" onClick={() => setShowModal(true)}>
+              Get Free Quote
+            </button>
+            <QuoteModal show={showModal} handleClose={() => setShowModal(false)} />
         </Container>
       </div>
 
@@ -109,7 +115,10 @@ const AboutUs = () => {
         <Container>
           <h2 className="mb-3">Let's design something beautiful together.</h2>
           <p>Book your free design consultation now!</p>
-          <Button color="light" size="lg" outline>Contact Us</Button>
+          <button className="btn btn-primary mx-2" onClick={() => setShowModal(true)}>
+             Contact us
+            </button>
+            <QuoteModal show={showModal} handleClose={() => setShowModal(false)} />
         </Container>
       </div>
     </div>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button, Form, Alert } from "react-bootstrap";
 import axios from "axios";
 
-function QuoteModal({ show, handleClose, downloadMode = false }) {
+function QuoteModal({ show, handleClose, downloadMode = false ,ideas=false, guide=false}) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -40,7 +40,15 @@ function QuoteModal({ show, handleClose, downloadMode = false }) {
       setSubmitted(true);
       setError("");
 
-      if (downloadMode) {
+      if (downloadMode===true && guide===true) {
+        const link = document.createElement("a");
+        link.href = "/files/InteriorGuide.pdf"; // Adjust this path to your actual public file
+        link.download = "Sharma-Interior.pdf";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+       if (downloadMode===true && ideas===true) {
         const link = document.createElement("a");
         link.href = "/files/InteriorGuide.pdf"; // Adjust this path to your actual public file
         link.download = "Sharma-Interior.pdf";

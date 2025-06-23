@@ -7,19 +7,18 @@ import { faQuoteLeft, faStar } from '@fortawesome/free-solid-svg-icons';
 
 const testimonials = [
   {
-    name: 'Anjali Mehta',
+    name: 'Vijay Mehta',
     feedback: 'SharmaInterior completely transformed my kitchen. The design, execution, and finish are top-notch!',
     image: '/images/client1.png',
     rating: 5
   },
   {
-    name: 'Rahul Sharma',
+    name: 'Vedprakash Sharma',
     feedback: 'Their team was professional and delivered the wardrobe on time with stunning quality.',
     image: '/images/client2.png',
     rating: 4
   },
-  {
-    name: 'Sneha Kapoor',
+  { name: 'Ramesh Jaiswal',
     feedback: 'Loved the service and design suggestions. The interior now feels luxurious yet practical!',
     image: '/images/client3.png',
     rating: 5

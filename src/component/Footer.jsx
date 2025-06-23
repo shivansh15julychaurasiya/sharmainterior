@@ -9,9 +9,9 @@ const Footer = () => {
           © 2025 Sharma-Interior All Rights Reserved.
         </p>
         <p className="text-center" style={{ fontSize: "13px", lineHeight: "1.6" }}>
-          ¹For full scope, please visit, https://sharmainterior.co.in/ | ²For kitchen,
-          wardrobes and storage | ³In comparison with a branded player and for exact
-          scope | ⁴Booking amount is 5% of the final quote or Rs.25000, whichever is
+          For full scope, please visit, https://sharmainterior.co.in/ | For kitchen,
+          wardrobes and storage | In comparison with a branded player and for exact
+          scope | Booking amount is 5% of the final quote or Rs.25000, whichever is
           higher interior designers in Pune interior designer near me best interior
           designers in Pune interior designers in bangalore interior design bangalore
           interior designer near me best interior designers in mumbai interior designer

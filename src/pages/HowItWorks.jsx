@@ -9,7 +9,7 @@ const steps = [
   },
   {
     icon:  "/images/payment.png",
-    title: "(5% payment⁴)",
+    title: "(5% payment)",
     desc: "Book a renovation",
   },
   {

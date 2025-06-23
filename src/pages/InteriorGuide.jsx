@@ -44,6 +44,7 @@ const InteriorGuide = () => {
               show={modalOpen}
               handleClose={() => setModalOpen(false)}
               downloadMode={true} // 🟢 This enables PDF download only here
+              guide={true}
             />
           </Col>
         </Row>

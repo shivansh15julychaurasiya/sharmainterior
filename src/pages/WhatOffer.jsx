@@ -25,8 +25,8 @@ const offerCards = [
     title: 'Warranty',
     icon: '/images/icon2.png',
     points: [
-      'FLAT 10-year warranty¹ - Stay worry-free with our warranty policy on modular products.',
-      'Up to 1-year on-site service warranty¹ - for painting, electrical, plumbing, etc.',
+      'FLAT 10-year warranty - Stay worry-free with our warranty policy on modular products.',
+      'Up to 1-year on-site service warranty - for painting, electrical, plumbing, etc.',
     ],
   },
   {

@@ -1,8 +1,7 @@
 import {useState} from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import { FaDownload } from "react-icons/fa";
-import DownloadGuideModal from "./DownloadGuideModel";
-
+import QuoteModal from "./QuoteModel";
 const InteriorIdeas = () => {
       const [modalOpen, setModalOpen] = useState(false);
   
@@ -18,7 +17,7 @@ const InteriorIdeas = () => {
         <Row className="align-items-center">
           <Col md="6">
             <img
-              src="/images/image9.png"
+              src="/images/ideas.jpg"
               alt="Interior Guide"
               style={{
                 width: "100%",
@@ -33,11 +32,19 @@ const InteriorIdeas = () => {
             <p style={{ marginTop: "15px", fontSize: "16px", color: "#333" }}>
             Discover endless inspiration for every corner of your home! Download now and bring your dream home to life
             </p>
-               <Button color="primary" onClick={() => setModalOpen(true)}>
-                <FaDownload style={{ marginRight: "8px" }} />
-        Download guide
-      </Button>
-      <DownloadGuideModal isOpen={modalOpen} toggle={() => setModalOpen(!modalOpen)} />
+              
+       <Button color="primary" onClick={() => setModalOpen(true)}>
+              <FaDownload style={{ marginRight: "8px" }} />
+              Download guide
+            </Button>
+
+            {/*  Using QuoteModal instead of DownloadGuideModal with downloadMode */}
+            <QuoteModal
+              show={modalOpen}
+              handleClose={() => setModalOpen(false)}
+              downloadMode={true} //  This enables PDF download only here
+              ideas={true}
+            />
           </Col>
         </Row>
       </div>

@@ -33,7 +33,7 @@ export default function Home() {
     },
     {
       icon: "/images/icon11.png",
-      text: "Flat 10-year warranty¹",
+      text: "Flat 10-year warranty",
     },
     {
       icon: "/images/icon12.png",
@@ -90,7 +90,7 @@ export default function Home() {
         <div data-aos="fade-up"><ConnectWithUs /></div>
         <div data-aos="fade-up"><HowItWorks /></div>
         <div data-aos="fade-up"><TestimonialCarousel /></div>
-        <div data-aos="fade-up"><InTheNews /></div>
+        {/* <div data-aos="fade-up"><InTheNews /></div> */}
         <div data-aos="fade-up"><DesignBanner /></div>
       </div>
     </>
